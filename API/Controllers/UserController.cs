@@ -35,7 +35,7 @@ namespace API.Controllers
         [HttpPost("login")]
         public string Login([FromBody] string value)
         {
-            return "this is not empty";
+            return "";
         }
 
         // PUT api/user/5
