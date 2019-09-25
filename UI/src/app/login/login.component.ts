@@ -8,7 +8,7 @@ import { userLogin } from '../userLogin';
 })
 export class LoginComponent implements OnInit {
 
-  userLogin: user = {
+  user: userLogin = {
     userName: 'Deepak',
     password: 'Test'
   }
