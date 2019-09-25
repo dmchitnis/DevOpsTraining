@@ -26,14 +26,16 @@ namespace API.Controllers
 
         // POST api/user
         [HttpPost("registration")]
-        public void Registration([FromBody] string value)
+        public bool Registration([FromBody] string value)
         {
+            return false;
         }
 
         // POST api/user
         [HttpPost("login")]
-        public void Login([FromBody] string value)
+        public string Login([FromBody] string value)
         {
+            return "this is not empty";
         }
 
         // PUT api/user/5

@@ -1,4 +1,6 @@
 using NUnit.Framework;
+using API.Controllers;
+using System.Threading.Tasks;
 
 namespace Tests
 {
@@ -11,9 +13,14 @@ namespace Tests
         }
 
         [Test]
-        public void Registration()
+        public void Login()
         {
-            Assert.Pass();
+            var controller = new userController();
+            string args = "{userName:Deepak;password:Test}";
+            var token = controller.Login(args);
+            string strg;
+            strg = string.IsNullOrEmpty(token) ? "Token is Empty" : "Token is not empty";
+            Assert.AreSame("Token is not empty", strg);
         }
     }
 }
