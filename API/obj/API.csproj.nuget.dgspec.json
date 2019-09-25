@@ -1,28 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "/home/dmchitnis/DevOpsTraining/myapi/myapi.csproj": {}
+    "C:\\DevOpsTraining\\DevOpsTraining\\API\\API.csproj": {}
   },
   "projects": {
-    "/home/dmchitnis/DevOpsTraining/myapi/myapi.csproj": {
+    "C:\\DevOpsTraining\\DevOpsTraining\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/dmchitnis/DevOpsTraining/myapi/myapi.csproj",
-        "projectName": "myapi",
-        "projectPath": "/home/dmchitnis/DevOpsTraining/myapi/myapi.csproj",
-        "packagesPath": "/home/dmchitnis/.nuget/packages/",
-        "outputPath": "/home/dmchitnis/DevOpsTraining/myapi/obj/",
+        "projectUniqueName": "C:\\DevOpsTraining\\DevOpsTraining\\API\\API.csproj",
+        "projectName": "API",
+        "projectPath": "C:\\DevOpsTraining\\DevOpsTraining\\API\\API.csproj",
+        "packagesPath": "C:\\Users\\dchitnis\\.nuget\\packages\\",
+        "outputPath": "C:\\DevOpsTraining\\DevOpsTraining\\API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "/usr/share/dotnet/sdk/NuGetFallbackFolder"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "/home/dmchitnis/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\dchitnis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -48,12 +50,17 @@
             "Microsoft.AspNetCore.Razor.Design": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[2.1.2, )"
+              "version": "[2.1.0, )"
             },
             "Microsoft.NETCore.App": {
+              "suppressParent": "All",
               "target": "Package",
               "version": "[2.1.0, )",
               "autoReferenced": true
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[5.0.0-rc2, )"
             }
           },
           "imports": [
