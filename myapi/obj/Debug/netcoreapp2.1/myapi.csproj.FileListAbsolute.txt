@@ -1,0 +1,14 @@
+/home/dmchitnis/DevOpsTraining/myapi/bin/Debug/netcoreapp2.1/myapi.deps.json
+/home/dmchitnis/DevOpsTraining/myapi/bin/Debug/netcoreapp2.1/myapi.runtimeconfig.json
+/home/dmchitnis/DevOpsTraining/myapi/bin/Debug/netcoreapp2.1/myapi.runtimeconfig.dev.json
+/home/dmchitnis/DevOpsTraining/myapi/bin/Debug/netcoreapp2.1/myapi.dll
+/home/dmchitnis/DevOpsTraining/myapi/bin/Debug/netcoreapp2.1/myapi.pdb
+/home/dmchitnis/DevOpsTraining/myapi/obj/Debug/netcoreapp2.1/myapi.csprojAssemblyReference.cache
+/home/dmchitnis/DevOpsTraining/myapi/obj/Debug/netcoreapp2.1/myapi.csproj.CoreCompileInputs.cache
+/home/dmchitnis/DevOpsTraining/myapi/obj/Debug/netcoreapp2.1/myapi.RazorAssemblyInfo.cache
+/home/dmchitnis/DevOpsTraining/myapi/obj/Debug/netcoreapp2.1/myapi.RazorAssemblyInfo.cs
+/home/dmchitnis/DevOpsTraining/myapi/obj/Debug/netcoreapp2.1/myapi.AssemblyInfoInputs.cache
+/home/dmchitnis/DevOpsTraining/myapi/obj/Debug/netcoreapp2.1/myapi.AssemblyInfo.cs
+/home/dmchitnis/DevOpsTraining/myapi/obj/Debug/netcoreapp2.1/myapi.RazorTargetAssemblyInfo.cache
+/home/dmchitnis/DevOpsTraining/myapi/obj/Debug/netcoreapp2.1/myapi.dll
+/home/dmchitnis/DevOpsTraining/myapi/obj/Debug/netcoreapp2.1/myapi.pdb
