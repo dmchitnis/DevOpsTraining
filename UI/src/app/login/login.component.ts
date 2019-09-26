@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    var url = environment.apibaseurl + '/api/user/login'
+    var url = this.APIUrl + '/api/user/login'
     this.httpClient.post<userLogin>(url,this.user)
     .subscribe( 
       (data) => this.user.token = data.token
