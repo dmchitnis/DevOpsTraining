@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    run: myui
+  name: myui
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      run: myui
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        run: myui
+    spec:
+      containers:
+      - env:
+        - name: MYAPI
+          value: "http://myapi-service:5000"
+        image: gcr.io/scenic-comfort-253917/myui:v1
+        name: myui
+status: {}

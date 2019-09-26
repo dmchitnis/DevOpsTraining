@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: myui
+  name: myui-lb
+  namespace: default
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    run: myui
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer: {}
