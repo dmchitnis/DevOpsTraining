@@ -18,7 +18,7 @@ spec:
       containers:
       - env:
         - name: MYAPI-BASEURL
-          value: "http://deepak"
-        image: gcr.io/scenic-comfort-253917/myui:v6
+          value: "http://myapi"
+        image: gcr.io/scenic-comfort-253917/myui:v7
         name: myui
 status: {}
