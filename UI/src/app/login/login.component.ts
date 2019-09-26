@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
     token: null
   }
 
+  APIUrl = environment.apibaseurl;
+
   constructor(private httpClient: HttpClient) { }
 
   ngOnInit() {
