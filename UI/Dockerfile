@@ -5,7 +5,7 @@ WORKDIR /app
 COPY . .
 
 RUN npm install && \
-    ng build --prod
+    npm run build
 
 FROM nginx:alpine
 
