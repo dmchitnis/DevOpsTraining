@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - env:
-        - name: MYAPI
+        - name: MYAPI-BASEURL
           value: "http://myapi-service:5000"
         image: gcr.io/scenic-comfort-253917/myui:v1
         name: myui
