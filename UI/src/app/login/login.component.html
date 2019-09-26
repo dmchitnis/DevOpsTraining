@@ -1,2 +1,12 @@
-<p>{{user}}</p>
+<div>
+    <label>User Name:
+        <input [(ngModel)]="user.userName" placeholder="username"/>
+    </label>
+</div>
+<div>
+    <label>Password:
+        <input [(ngModel)]="user.password" placeholder="password"/>
+    </label>
+</div>
 <button (click)="login()">Login</button>
+<p><label>{{user.token}}</label></p>

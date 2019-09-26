@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { userLogin } from '../userlogin';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +10,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginComponent implements OnInit {
 
-  user = 'Deepak';
+  user: userLogin = {
+    userName: null,
+    password: null,
+    token: null
+  }
 
   constructor(private httpClient: HttpClient) { }
 
@@ -16,9 +22,10 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.httpClient.get('https://localhost:5001/api/Values/1',)
+    var url = environment.apibaseurl + '/api/user/login'
+    this.httpClient.post<userLogin>(url,this.user)
     .subscribe( 
-      (data) => this.user = data.Value
+      (data) => this.user.token = data.token
     );
   }
 }
