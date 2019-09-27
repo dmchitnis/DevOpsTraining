@@ -18,7 +18,7 @@ spec:
         run: myapi
     spec:
       containers:
-      - image: gcr.io/scenic-comfort-253917/myapi:v1
+      - image: gcr.io/scenic-comfort-253917/myapi:v0.BUILDNUMBER
         name: myapi        
         resources: {}
         ports:
