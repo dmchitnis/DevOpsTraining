@@ -22,5 +22,5 @@ spec:
         name: myapi        
         resources: {}
         ports:
-        - containerPort: 5000
+        - containerPort: 80
 status: {}
