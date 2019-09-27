@@ -19,6 +19,8 @@ spec:
     spec:
       containers:
       - image: gcr.io/scenic-comfort-253917/myapi:v1
-        name: myapi
+        name: myapi        
         resources: {}
+        ports:
+        - containerPort: 80
 status: {}
