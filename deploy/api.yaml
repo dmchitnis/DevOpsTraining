@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: myapi
+  name: myapi
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      run: myapi
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: myapi
+    spec:
+      containers:
+      - image: gcr.io/scenic-comfort-253917/myapi:v0.[@BuildNumber@]
+        name: myapi        
+        resources: {}
+        ports:
+        - containerPort: 80
+status: {}
