@@ -18,7 +18,7 @@ spec:
       containers:
       - env:
         - name: MYAPI-BASEURL
-          value: "http://myapi"
+          value: "http://35.243.186.33"
         image: gcr.io/scenic-comfort-253917/myui:v0.BUILDNUMBER
         name: myui
 status: {}
