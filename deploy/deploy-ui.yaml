@@ -19,6 +19,6 @@ spec:
       - env:
         - name: MYAPI-BASEURL
           value: "http://myapi"
-        image: gcr.io/scenic-comfort-253917/myui:v8
+        image: gcr.io/scenic-comfort-253917/myui:v9
         name: myui
 status: {}
