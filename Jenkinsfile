@@ -1,9 +1,6 @@
-stage('Validate code is checked out'){    
+stage('Checkout Code'){    
     node {
         checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/dmchitnis/DevOpsTraining.git']]])
-        dir('Test'){sh 'ls -a'}
-        dir('myapi'){sh 'ls -a'}
-        dir('UI'){sh 'ls -a'} 
     }
 }
 stage('Validate tools exist'){
@@ -44,6 +41,18 @@ stage('Build and push docker images'){
         dir('UI'){
         def uiImage = docker.build("gcr.io/scenic-comfort-253917/myui:v0.${env.BUILD_NUMBER}")
         uiImage.push()
+        }
+    }
+}
+stage('Deploy to Kebernetes'){
+    node{
+        dir('deploy'){
+            sh label: 'Run scripts for deploying to Kubernetes', script: '''
+            sed -i 's/BUILDNUMBER/'"$BUILD_NUMBER"'/g'  deploy-api.yaml 
+            sed -i 's/BUILDNUMBER/'"$BUILD_NUMBER"'/g'  deploy-ui.yaml 
+            /usr/local/bin/kubectl apply -f deploy-api.yaml
+            /usr/local/bin/kubectl apply -f deploy-ui.yaml
+            '''
         }
     }
 }
