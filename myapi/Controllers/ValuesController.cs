@@ -21,7 +21,7 @@ namespace myapi.Controllers
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            return "{\"Value\": \"valu\"}";
+            return "{\"Value\": \"value\"}";
         }
 
         // POST api/values
