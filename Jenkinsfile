@@ -1,10 +1,6 @@
-stage('Checkout Code'){    
+stage('Prepare'){    
     node {
         checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/dmchitnis/DevOpsTraining.git']]])
-    }
-}
-stage('Validate tools exist'){
-    node {
         echo 'Build Number:' + env.BUILD_NUMBER
         sh label: 'Versions of Tools', script: '''
         node -v
@@ -12,27 +8,22 @@ stage('Validate tools exist'){
         dotnet --version
         ng version
         '''
-    }
-}
-stage('Setup Credentials'){
-    node {
         sh label: 'Credentials', script: '''
         gcloud auth configure-docker
         gcloud container clusters get-credentials my-cluster --zone us-east1-b --project scenic-comfort-253917
         '''
     }
 }
-stage('Build and run automated tests'){
+stage('Run tests'){
     node {
         dir('Test'){
         sh label: 'run dotnet test', script: '''
-        ls -a
         dotnet test
         '''
         }
     }
 }
-stage('Build and push docker images'){
+stage('Build and push Docker images'){
     node {
         dir('myapi'){
         def apiImage = docker.build("gcr.io/scenic-comfort-253917/myapi:v0.${env.BUILD_NUMBER}")
@@ -59,7 +50,7 @@ stage('Deploy to Kebernetes'){
         }
     }
 }
-stage('Cleanup Docker images on Build server'){
+stage('Cleanup'){
     node {
         sh 'docker rmi $(docker images -q) -f'
     }
