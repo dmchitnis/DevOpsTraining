@@ -49,10 +49,18 @@ stage('Deploy to Kebernetes'){
         dir('deploy'){
             sh label: 'Run scripts for deploying to Kubernetes', script: '''
             sed -i 's/BUILDNUMBER/'"$BUILD_NUMBER"'/g'  deploy-api.yaml 
-            sed -i 's/BUILDNUMBER/'"$BUILD_NUMBER"'/g'  deploy-ui.yaml 
+            sed -i 's/BUILDNUMBER/'"$BUILD_NUMBER"'/g'  deploy-ui.yaml
+            cat deploy-api.yaml 
             /usr/local/bin/kubectl apply -f deploy-api.yaml
+            cat deploy-ui.yaml
             /usr/local/bin/kubectl apply -f deploy-ui.yaml
+            /usr/local/bin/kubectl get deployments
             '''
         }
+    }
+}
+stage('Cleanup Docker images on Build server'){
+    node {
+        sh 'docker rmi $(docker images -q) -f'
     }
 }
