@@ -21,7 +21,6 @@ stage('Build and run automated tests'){
     node {
         dir('Test'){
         sh label: 'run dotnet test', script: '''
-        cd Test
         dotnet test
         '''
         }
