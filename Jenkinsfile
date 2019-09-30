@@ -19,20 +19,23 @@ stage('Setup Credentials'){
 }
 stage('Build and run automated tests'){
     node {
+        dir('Test'){
         sh label: 'run dotnet test', script: '''
         cd Test
         dotnet test
         '''
+        }
     }
 }
 stage('Build and push docker images'){
     node {
-        sh 'cd myapi'
+        dir('myapi'){
         def apiImage = docker.build("gcr.io/scenic-comfort-253917/myapi:v0.${env.BUILD_NUMBER}")
         apiImage.push()
-        sh 'cd ..'
-        sh 'cd UI'
+        }
+        dir('UI'){
         def uiImage = docker.build("gcr.io/scenic-comfort-253917/myui:v0.${env.BUILD_NUMBER}")
         uiImage.push()
+        }
     }
 }
