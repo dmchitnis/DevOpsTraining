@@ -1,3 +1,8 @@
+stage('Validate code is checked out'){
+    dir('Test'){sh 'ls -a'}
+    dir('myapi'){sh 'ls -a'}
+    dir('UI'){sh 'ls -a'} 
+}
 stage('Validate tools exist'){
     node {
         echo 'Build Number:' + env.BUILD_NUMBER
