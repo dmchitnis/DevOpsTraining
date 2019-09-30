@@ -1,8 +1,9 @@
-stage('Validate code is checked out'){
+stage('Validate code is checked out'){    
     node {
-    dir('Test'){sh 'ls -a'}
-    dir('myapi'){sh 'ls -a'}
-    dir('UI'){sh 'ls -a'} 
+        checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/dmchitnis/DevOpsTraining.git']]])
+        dir('Test'){sh 'ls -a'}
+        dir('myapi'){sh 'ls -a'}
+        dir('UI'){sh 'ls -a'} 
     }
 }
 stage('Validate tools exist'){
