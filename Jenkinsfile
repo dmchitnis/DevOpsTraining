@@ -25,13 +25,18 @@ stage('Run tests'){
         }
         dir('myapi'){
             def scannerHome = tool 'sonarqube-dotnetcore';
-            withSonarQubeEnv(installationName: 'sonarqube-1') { // If you have configured more than one global server connection, you can specify its name
-                //sh "${scannerHome}/bin/sonar-scanner -X"
-                sh label: 'Run SonarQube shell script', script: '''
-                "${scannerHome}/SonarScanner.MSBuild.dll" begin /k:DevOpsTraining
-                dotnet build
-                "${scannerHome}/SonarScanner.MSBuild.dll" end\
+            withSonarQubeEnv(installationName: 'sonarqube-1') {
+                sh label: 'SonarQube environment', script: '''
+                echo $scannerHome
+                cd $scannerHome
+                ls -a
                 '''
+                //sh "${scannerHome}/bin/sonar-scanner -X"
+                //sh label: 'Run SonarQube shell script', script: '''
+                //"${scannerHome}/SonarScanner.MSBuild.dll" begin /k:DevOpsTraining
+                //dotnet build
+                //"${scannerHome}/SonarScanner.MSBuild.dll" end\
+                //'''
             }
         }
     }
