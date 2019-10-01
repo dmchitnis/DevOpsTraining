@@ -23,13 +23,13 @@ stage('Run tests'){
         dotnet test
         '''        
         }
-        dir('UI'){
-            def scannerHome = tool 'sonarqube-default';
+        dir('myapi'){
+            def scannerHome = tool 'sonarqube-dotnetcore';
             withSonarQubeEnv(installationName: 'sonarqube-1') { // If you have configured more than one global server connection, you can specify its name
-                sh "${scannerHome}/bin/sonar-scanner -X"
-                //sh "${scannerHome}/SonarScanner.MSBuild.dll begin /k:DevOpsTraining"
-                //sh 'dotnet build'
-                //sh "${scannerHome}/SonarScanner.MSBuild.dll end"
+                //sh "${scannerHome}/bin/sonar-scanner -X"
+                sh "${scannerHome}/SonarScanner.MSBuild.dll begin /k:DevOpsTraining"
+                sh 'dotnet build'
+                sh "${scannerHome}/SonarScanner.MSBuild.dll end"
             }
         }
     }
