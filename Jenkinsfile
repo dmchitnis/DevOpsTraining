@@ -1,3 +1,5 @@
+def apiImage
+def uiImage
 stage('Prepare'){    
     node {
         checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/dmchitnis/DevOpsTraining.git']]])
@@ -26,12 +28,14 @@ stage('Run tests'){
 stage('Build and push Docker images'){
     node {
         dir('myapi'){
-        def apiImage = docker.build("gcr.io/scenic-comfort-253917/myapi:v0.${env.BUILD_NUMBER}")
+        apiImage = docker.build("gcr.io/scenic-comfort-253917/myapi:v0.${env.BUILD_NUMBER}")
         apiImage.push()
+        sh 'docker images rm gcr.io/scenic-comfort-253917/myapi:v0.${env.BUILD_NUMBER} -f'
         }
         dir('UI'){
-        def uiImage = docker.build("gcr.io/scenic-comfort-253917/myui:v0.${env.BUILD_NUMBER}")
+        uiImage = docker.build("gcr.io/scenic-comfort-253917/myui:v0.${env.BUILD_NUMBER}")
         uiImage.push()
+        sh 'docker images rm gcr.io/scenic-comfort-253917/myui:v0.${env.BUILD_NUMBER} -f'
         }
     }
 }
@@ -52,6 +56,5 @@ stage('Deploy to Kebernetes'){
 }
 stage('Cleanup'){
     node {
-        sh 'docker rmi $(docker images -q) -f'
     }
 }
