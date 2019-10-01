@@ -24,14 +24,14 @@ stage('Run tests'){
         '''        
         }
         dir('myapi'){
-            def scannerHome = tool 'sonarqube-dotnetcore';
+            def scannerHome = tool 'sonarqube-default';
             withSonarQubeEnv(installationName: 'sonarqube-1') {
-                sh label: 'SonarQube environment', script: '''
-                echo $scannerHome
-                cd $scannerHome
-                ls -a
-                '''
-                //sh "${scannerHome}/bin/sonar-scanner -X"
+                //sh label: 'SonarQube environment', script: '''
+                //echo $scannerHome
+                //cd $scannerHome
+                //ls -a
+                //'''
+                sh "${scannerHome}/bin/sonar-scanner -X"
                 //sh label: 'Run SonarQube shell script', script: '''
                 //"${scannerHome}/SonarScanner.MSBuild.dll" begin /k:DevOpsTraining
                 //dotnet build
