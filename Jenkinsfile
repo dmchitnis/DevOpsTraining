@@ -21,7 +21,13 @@ stage('Run tests'){
         dir('Test'){
         sh label: 'run dotnet test', script: '''
         dotnet test
-        '''
+        '''        
+        }
+        dir('myapi'){
+            def scannerHome = tool 'sonarqube-default';
+            withSonarQubeEnv('sonarqube-1') { // If you have configured more than one global server connection, you can specify its name
+                sh "${scannerHome}/bin/sonar-scanner"
+            }
         }
     }
 }
