@@ -25,7 +25,7 @@ stage('Run tests'){
         }
         dir('UI'){
             def scannerHome = tool 'sonarqube-default';
-            withSonarQubeEnv('sonarqube-1') { // If you have configured more than one global server connection, you can specify its name
+            withSonarQubeEnv(installationName: 'sonarqube-1', credentialsId: 'DevOpsTraining') { // If you have configured more than one global server connection, you can specify its name
                 sh "${scannerHome}/bin/sonar-scanner"
                 //sh "${scannerHome}/SonarScanner.MSBuild.dll begin /k:DevOpsTraining"
                 //sh 'dotnet build'
