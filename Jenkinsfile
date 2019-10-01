@@ -24,7 +24,7 @@ stage('Run tests'){
         '''        
         }
         dir('myapi'){
-            def scannerHome = tool 'sonarqube-default';
+            def scannerHome = tool 'SonarScanner 4.0';
             withSonarQubeEnv('sonarqube-1') { // If you have configured more than one global server connection, you can specify its name
                 sh "${scannerHome}/bin/sonar-scanner"
             }
