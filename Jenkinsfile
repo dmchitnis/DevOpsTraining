@@ -30,12 +30,12 @@ stage('Build and push Docker images'){
         dir('myapi'){
         apiImage = docker.build("gcr.io/scenic-comfort-253917/myapi:v0.${env.BUILD_NUMBER}")
         apiImage.push()
-        sh 'docker images rm gcr.io/scenic-comfort-253917/myapi:v0.$BUILD_NUMBER --force'
+        sh 'docker image rm gcr.io/scenic-comfort-253917/myapi:v0.$BUILD_NUMBER --force'
         }
         dir('UI'){
         uiImage = docker.build("gcr.io/scenic-comfort-253917/myui:v0.${env.BUILD_NUMBER}")
         uiImage.push()
-        sh 'docker images rm gcr.io/scenic-comfort-253917/myui:v0.$BUILD_NUMBER --force'
+        sh 'docker image rm gcr.io/scenic-comfort-253917/myui:v0.$BUILD_NUMBER --force'
         }
     }
 }
