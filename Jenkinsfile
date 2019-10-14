@@ -23,22 +23,22 @@ stage('Run tests'){
         dotnet test
         '''        
         }
-        dir('UI'){
-            def scannerHome = tool 'sonarqube-default';
-            withSonarQubeEnv(installationName: 'sonarqube-1') {
+        //dir('UI'){
+            //def scannerHome = tool 'sonarqube-default';
+            //withSonarQubeEnv(installationName: 'sonarqube-1') {
                 //sh label: 'SonarQube environment', script: '''
                 //echo $scannerHome
                 //cd $scannerHome
                 //ls -a
                 //'''
-                sh "${scannerHome}/bin/sonar-scanner -X -Dsonar.projectKey=DevOpsTraining -Dsonar.sources=src/app"
+                //sh "${scannerHome}/bin/sonar-scanner -X -Dsonar.projectKey=DevOpsTraining -Dsonar.sources=src/app"
                 //sh label: 'Run SonarQube shell script', script: '''
                 //"${scannerHome}/SonarScanner.MSBuild.dll" begin /k:DevOpsTraining
                 //dotnet build
                 //"${scannerHome}/SonarScanner.MSBuild.dll" end\
                 //'''
-            }
-        }
+            //}
+        //}
     }
 }
 stage('Build and push Docker images'){
