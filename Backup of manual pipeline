@@ -1,0 +1,62 @@
+Execute Shell 1
+===============
+node -v
+npm -v
+dotnet --version
+ng -v
+#docker image ls
+gcloud auth configure-docker
+gcloud container clusters get-credentials my-cluster --zone us-east1-b --project scenic-comfort-253917
+
+
+Execute Shell 2
+===============
+echo "BUILD_NUMBER" :: $BUILD_NUMBER
+echo "WORKSPACE"::$WORKSPACE
+
+Execute Shell 3
+===============
+cd deploy
+#cat test.yaml
+sed -i 's/BUILDNUMBER/'"$BUILD_NUMBER"'/g'  deploy-api.yaml 
+sed -i 's/BUILDNUMBER/'"$BUILD_NUMBER"'/g'  deploy-ui.yaml 
+#cat test.yaml
+# sed 's/[@BuildNumber@]/$BUILD_NUMBER/g' api.yaml >> exec-api.yaml
+# sed 's/[@BuildNumber@]/$BUILD_NUMBER/g' api-service.yaml >> exec-api-service.yaml
+# sed 's/[@BuildNumber@]/$BUILD_NUMBER/g' api-service-lb.yaml >> exec-api-service-ln.yaml
+# sed 's/[@BuildNumber@]/$BUILD_NUMBER/g' ui.yaml >> exec-ui.yaml
+# sed 's/[@BuildNumber@]/$BUILD_NUMBER/g' ui-service.yaml >> exec-ui-service.yaml
+cd ..
+
+Execute Shell 4
+===============
+cd Test
+dotnet test
+cd ..
+
+Execute Shell 5
+===============
+cd myapi
+docker build -t gcr.io/scenic-comfort-253917/myapi:v0.$BUILD_NUMBER .
+docker push gcr.io/scenic-comfort-253917/myapi:v0.$BUILD_NUMBER
+cd ..
+
+Execute Shell 6
+===============
+cd UI
+docker build -t gcr.io/scenic-comfort-253917/myui:v0.$BUILD_NUMBER .
+docker push gcr.io/scenic-comfort-253917/myui:v0.$BUILD_NUMBER
+cd ..
+
+Execute Shell 7
+===============
+cd deploy
+#kubectl apply -f deploy-api-service-lb.yaml
+cat deploy-api.yaml
+/usr/local/bin/kubectl apply -f deploy-api.yaml
+#kubectl apply -f deploy-ui-service.yaml
+/usr/local/bin/kubectl apply -f deploy-ui.yaml
+kubectl get services
+kubectl get deployments
+kubectl get pods
+cd ..

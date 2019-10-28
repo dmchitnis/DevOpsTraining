@@ -55,7 +55,7 @@ stage('Build and push Docker images'){
         }
     }
 }
-stage('Deploy to Kebernetes'){
+stage('Deploy to Kubernetes'){
     node{
         dir('deploy'){
             sh label: 'Run scripts for deploying to Kubernetes', script: '''
