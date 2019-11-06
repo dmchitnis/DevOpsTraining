@@ -30,7 +30,6 @@ stage('Run tests'){
             //def scannerHome = tool 'sonardotnet';
             //withSonarQubeEnv(installationName: 'sonarqube-1') {
                 sh label: 'SonarQube Scan', script: '''
-                dotnet tool install --global dotnet-sonarscanner
                 dotnet sonarscanner begin /k:"dotnet-myapi" /d:sonar.login="6168c1cae4016e28bd6b73cde79a9fda9a6fdb5d" /d:sonar.host.url="http://35.236.196.7"
                 dotnet build
                 dotnet sonarscanner end
