@@ -25,16 +25,16 @@ stage('Run tests'){
         }
     node {
         dir('myapi'){
-            def scannerHome = tool 'sonardotnet';
-            withSonarQubeEnv(installationName: 'sonarqube-1') {
+            //def scannerHome = tool 'sonardotnet';
+            //withSonarQubeEnv(installationName: 'sonarqube-1') {
                 sh label: 'SonarQube Scan', script: '''
-                echo $scannerHome
-                cd $scannerHome
+                //echo $scannerHome
+                //cd $scannerHome
                 dotnet sonarscanner begin /k:"dotnet-myapi" 
                 dotnet build
                 dotnet sonarscanner end
                 '''
-                }
+                //}
             }
         }
     }
