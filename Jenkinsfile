@@ -16,27 +16,24 @@ stage('Prepare'){
         '''
     }
 }
+stage('SonarQube Scan') {
+    node {
+        dir('myapi'){
+        sh label: 'SonarQube Scan', script: '''
+        ls -a
+        dotnet sonarscanner begin /k:"dotnet-myapi" /d:sonar.login="6168c1cae4016e28bd6b73cde79a9fda9a6fdb5d" /d:sonar.host.url="http://35.236.196.7"
+        dotnet build myapi.csproj
+        dotnet sonarscanner end
+        '''
+        }
+    }
+}
 stage('Run tests'){
     node {
         dir('Test'){
         sh label: 'run dotnet test', script: '''
         dotnet test
         '''        
-        }
-    node {
-        dir('myapi'){
-            //echo $scannerHome
-            //cd $scannerHome
-            //def scannerHome = tool 'sonardotnet';
-            //withSonarQubeEnv(installationName: 'sonarqube-1') {
-                sh label: 'SonarQube Scan', script: '''
-                ls -a
-                dotnet sonarscanner begin /k:"dotnet-myapi" /d:sonar.login="6168c1cae4016e28bd6b73cde79a9fda9a6fdb5d" /d:sonar.host.url="http://35.236.196.7"
-                dotnet build myapi.csproj
-                dotnet sonarscanner end
-                '''
-                //}
-            }
         }
     }
 }
